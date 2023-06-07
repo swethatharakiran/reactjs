@@ -5,15 +5,21 @@ import './ExpenseItem.css'
 
 const ExpenseItem=(props)=>{
     
+    const deleteExp=()=>{
+        console.log('clicked')
+    }
     
     return (
         
         <Card className='expense-item'>
         <ExpenseDate date={props.date}></ExpenseDate>
+        
         <ExpenseDetails 
         title={props.title} 
         amount={props.amount} 
         location={props.location}></ExpenseDetails>
+        <button onClick={deleteExp}>Delete Expense</button>
+        
          </Card>
          
         );
