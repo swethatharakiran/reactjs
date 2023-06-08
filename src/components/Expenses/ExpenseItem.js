@@ -1,3 +1,4 @@
+import React,{useState} from 'react'; //useState is a function imported frm react
 import Card from '../UI/Card';
 import ExpenseDetails from './ExpensDetails';
 import ExpenseDate from './ExpenseDate';
@@ -5,8 +6,17 @@ import './ExpenseItem.css'
 
 const ExpenseItem=(props)=>{
     
-    const deleteExp=()=>{
+    const [title, setTitle]=useState(props.title);
+    const [amount,setAmount]=useState(props.amount)
+    
+    const changeTitle=()=>{
+        setTitle('Updated!')
         console.log('clicked')
+    }
+
+    const changeAmount=()=>{
+        setAmount(100)
+        console.log('changed')
     }
     
     return (
@@ -15,10 +25,11 @@ const ExpenseItem=(props)=>{
         <ExpenseDate date={props.date}></ExpenseDate>
         
         <ExpenseDetails 
-        title={props.title} 
-        amount={props.amount} 
+        title={title} 
+        amount={amount} 
         location={props.location}></ExpenseDetails>
-        <button onClick={deleteExp}>Delete Expense</button>
+        <button onClick={changeTitle}>Change Title</button>
+        <button onClick={changeAmount}>Change Amount</button>
         
          </Card>
          
