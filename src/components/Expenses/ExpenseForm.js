@@ -1,8 +1,20 @@
+import React,{useState} from 'react'
 import './ExpenseForm.css'
 const ExpenseForm=()=>{
 
+    const [enteredTitle,setEnteredTitle]=useState('');
+    const [enteredAmount,setEnteredAmount]=useState('');
+    const [enteredDate,setEnteredDate]=useState('')
+
     const titleEdit=(event)=>{
-        console.log(event.target.value)
+        setEnteredTitle(event.target.value)
+    }
+
+    const amountEdit=(event)=>{
+        setEnteredAmount(event.target.value)
+    }
+    const dateEdit=(event)=>{
+        setEnteredDate(event.target.value)
     }
 
     return (
@@ -15,11 +27,11 @@ const ExpenseForm=()=>{
                 </div>
                 <div className='new-expense__control'>
                 <label>Amount</label>
-                <input type='number' min='0.01' step='0.01'></input>
+                <input type='number' min='0.01' step='0.01' onChange={amountEdit}></input>
                 </div>
                 <div className='new-expense__control'>
                 <label>Date</label>
-                <input type='date' min='2020-01-01' max='2023-06-01'></input>
+                <input type='date' min='2020-01-01' max='2023-06-01' onChange={dateEdit}></input>
                 </div>
                 </div>
                 <div className='new-expense__actions'>
