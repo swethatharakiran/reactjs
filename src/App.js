@@ -1,3 +1,4 @@
+import ExpenseForm from './components/Expenses/ExpenseForm.js';
 import Card from './components/UI/Card.js'
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 //import ExpenseDate from "./components/ExpenseDate";
@@ -9,7 +10,7 @@ function App() {
   return (
     <Card>
       
-      <h2>Let's get started!</h2>
+      <ExpenseForm></ExpenseForm>
       
         
         {expenses.map((item)=>{
