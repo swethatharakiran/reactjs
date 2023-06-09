@@ -2,24 +2,53 @@ import React,{useState} from 'react'
 import './ExpenseForm.css'
 const ExpenseForm=()=>{
 
-    const [enteredTitle,setEnteredTitle]=useState('');
-    const [enteredAmount,setEnteredAmount]=useState('');
-    const [enteredDate,setEnteredDate]=useState('')
-
+   // const [userInput,setUserInput]=useState({
+   //     enteredTitle:'', enteredAmount:'',enteredDate:''});
+   const [enteredTitle,setEnteredTitle]=useState('');
+   const [enteredAmount,setEnteredAmount]=useState('');
+    const [enteredDate,setEnteredDate]=useState('');
+    
     const titleEdit=(event)=>{
-        setEnteredTitle(event.target.value)
+        
+            //console.log(event.target.value)
+            setEnteredTitle(event.target.value)  
+    
+           //setUserInput((prevState)=>{
+            //return {...prevState,eneteredTitle:event.target.value};
+          //})
     }
 
     const amountEdit=(event)=>{
-        setEnteredAmount(event.target.value)
+
+            setEnteredAmount(event.target.value)
+        
+                 //setUserInput((prevState)=>{
+            //return {...prevState,eneteredAmount:event.target.value};
+          //})
     }
+
     const dateEdit=(event)=>{
-        setEnteredDate(event.target.value)
+        
+            setEnteredDate(event.target.value)
+        
+        //  setUserInput((prevState)=>{
+          //  return {...prevState,eneteredDate:event.target.value};
+          //})
+    }
+    
+    const submitEvent=(event)=>{
+        event.preventDefault()
+        const expenseData={
+            title:enteredTitle,
+            amount:enteredAmount,
+            date:new Date(enteredDate)
+        }
+        console.log(expenseData)
     }
 
     return (
         <div className='new-expense'>
-            <form>
+            <form onSubmit={submitEvent}>
                 <div className='new-expense__controls'>
                 <div className='new-expense__control'>
                 <label>Title</label>
@@ -35,7 +64,7 @@ const ExpenseForm=()=>{
                 </div>
                 </div>
                 <div className='new-expense__actions'>
-                <button >Add Expense</button>
+                <button type='submit'>Add Expense</button>
                 </div>
             </form>
         </div>
