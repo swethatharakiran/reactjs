@@ -1,49 +1,56 @@
-//import ExpenseForm from './components/NewExpense/ExpenseForm.js';
-import Card from './components/UI/Card.js'
-import ExpenseItem from "./components/Expenses/ExpenseItem";
-import NewExpense from './components/NewExpense/NewExpense.js';
 import React,{useState} from 'react';
-//import ExpenseDate from "./components/ExpenseDate";
-function App() {
 
-    
-    const expenses=[{title:'car insurance',amount:5000,date:new Date(2023,5,7),location:'banglore'},
-      {title:'new TV',amount:50000,date:new Date(2023,4,7),location:'tumkur'},
-      {title:'Desk',amount:8000,date:new Date(2023,5,5),location:'mysore'},]
-    
-      const [myExpenses,setMyExpense]=useState(expenses);
+import NewExpense from './components/NewExpense/NewExpense';
+import Expenses from './components/Expenses/Expenses';
 
-      const addExpenseHandler=(expenseData)=>{
-        console.log('frm app.js file')
-        console.log(expenseData);
-        const updatedExpenses=[...myExpenses,
-          {'title': expenseData.title,'amount': expenseData.amount,'date': new Date(expenseData.date)}]
-        
-        setMyExpense(updatedExpenses);
-      }
+const initial_expense = [
+  {
+    id: 'e1',
+    title: 'Toilet Paper',
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+  {
+    id: 'e3',
+    title: 'Car Insurance',
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: 'e4',
+    title: 'New Desk (Wooden)',
+    amount: 450,
+    date: new Date(2021, 5, 12),
+  },
+];
+
+
+const App = () => {
+
+ 
+  const [expenses,setExpenses]=useState(initial_expense)
+  
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses)=>{
+      console.log(expense)
+      return [expense,...prevExpenses];
+    });
     console.log(expenses);
+  };
 
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
 
   return (
-    <Card>
-      
-      <NewExpense onAddExpense={addExpenseHandler}></NewExpense>
-      
-        
-        {myExpenses.map((item)=>{
-          return (
-          
-            <ExpenseItem title={item.title} 
-            amount={item.amount} 
-            date={item.date}
-            location={item.location}></ExpenseItem>
-            
-          )
-        })}
-        
-        
-      </Card>
-   
+    <div>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
+    </div>
   );
 }
 
